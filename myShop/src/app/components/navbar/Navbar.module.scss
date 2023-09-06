@@ -1,0 +1,58 @@
+.navbar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .logo {
+        display: flex;
+        align-items: center;
+        .logo__image {
+            width: 42px;
+            height: 42px;
+            background: url('../../../assets/image/lalasia.png') no-repeat;
+        }
+        .logo__title {
+            width: 80px;
+            text-align: center;
+            color: #151411;
+            font-size: 22px;
+            font-weight: bold;
+        }
+    }
+    .list__navbar {
+        width: 40%;
+        display: flex;
+        justify-content: space-between;
+        list-style-type: none;
+        .item__navbar {
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 32px;
+            letter-spacing: 0em;
+            text-align: left;
+        }
+    }
+    .user__block {
+        display: flex;
+    }
+}
+
+.cart {
+    width: 30px;
+    height: 30px;
+    background: url('../../../assets/image/cart.png') no-repeat;
+}
+
+.user {
+    width: 30px;
+    height: 30px;
+    background: url('../../../assets/image/user.png') no-repeat;
+}
+
+.navlink {
+    color: #151411;
+}
+
+.navlink__active {
+    color: #518581;
+}
