@@ -1,12 +1,11 @@
-import React, { useState } from 'react'
+// import { useState } from 'react'
+import { observer } from 'mobx-react-lite'
 import style from './Navbar.module.scss'
 import { NavLink } from 'react-router-dom'
+import store from '../../../store/app/AppStoreProvider'
 
-const Navbar = (): JSX.Element => {
-    const [toggle, setToggle] = useState(false)
-    const handleClick = () => {
-        setToggle(!toggle)
-    }
+export const Navbar = observer((): JSX.Element => {
+
     return (
         <nav className={style.navbar}>
             <div className={style.logo }>
@@ -14,14 +13,23 @@ const Navbar = (): JSX.Element => {
                 <div className={style.logo__title}>Lalasia</div>
             </div>
             <ul className={style.list__navbar}>
-                <li className={style.item__navbar} onClick={handleClick}>
-                    <NavLink to='/products' className={toggle ? style.navlink : style.navlink__active}>Products</NavLink>
+                <li className={style.item__navbar} >
+                    <NavLink to='/products'
+                    className={store.toggle ? style.navlink : style.navlink__active}
+                    onClick={() => store.toggleFunc()}
+                >Products</NavLink>
                 </li>
-                <li className={style.item__navbar} onClick={handleClick}>
-                    <NavLink to='/categories' className={toggle ? style.navlink : style.navlink__active}>Categories</NavLink>
+                <li className={style.item__navbar} >
+                    <NavLink to='/categories'
+                    className={store.toggle ? style.navlink : style.navlink__active}
+                    onClick={() => store.toggleFunc()}
+                >Categories</NavLink>
                 </li>
-                <li className={style.item__navbar} onClick={handleClick}>
-                    <NavLink to='/about' className={toggle ? style.navlink : style.navlink__active}>About Us</NavLink>
+                <li className={style.item__navbar} >
+                    <NavLink to='/about'
+                    className={store.toggle ? style.navlink : style.navlink__active}
+                    onClick={() => store.toggleFunc()}
+                >About Us</NavLink>
                 </li>
             </ul>
             <div className={style.user__block}>
@@ -30,6 +38,6 @@ const Navbar = (): JSX.Element => {
             </div>
         </nav>
     )
-}
+})
 
-export default Navbar
+// export default Navbar
