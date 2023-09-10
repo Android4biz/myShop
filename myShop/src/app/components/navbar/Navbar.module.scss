@@ -51,8 +51,11 @@
 
 .navlink {
     color: #151411;
+		text-decoration: none;
 }
 
-.navlink__active {
+.active {
+    text-decoration-style: solid;
     color: #518581;
+		line-height: 40px;
 }
