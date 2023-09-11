@@ -1,7 +1,7 @@
-// import React from 'react'
-import {Navbar} from './components/navbar/Navbar'
-// import NoMatch from './components/nomatch/NoMatch'
+import Navbar from './components/navbar/Navbar'
+import ProductTitle from './components/title/ProductTitle'
 import style from './App.module.scss'
+import Search from './components/search/Search'
 // import {
 //   Routes,
 //   Route
@@ -13,6 +13,8 @@ const App = observer((): JSX.Element => {
   return (
     <div className={style.app}>
       <Navbar />
+      <ProductTitle/>
+      <Search/>
       {/* <Routes>
         <Route path="*" element={<NoMatch/>}/>
       </Routes> */}

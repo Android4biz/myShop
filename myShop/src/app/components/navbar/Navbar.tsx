@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite'
 import style from './Navbar.module.scss'
 import { NavLink } from 'react-router-dom'
 
-export const Navbar = observer((): JSX.Element => {
+const Navbar = observer((): JSX.Element => {
     return (
         <nav className={style.navbar}>
             <div className={style.logo }>
@@ -36,3 +36,5 @@ export const Navbar = observer((): JSX.Element => {
         </nav>
     )
 })
+
+export default Navbar
