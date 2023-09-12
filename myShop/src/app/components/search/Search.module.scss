@@ -1,5 +1,7 @@
 .block__input {
-    max-width: 800px;
+    display: flex;
+    align-items: center;
+    max-width: 1000px;
     margin-top: 80px;
     margin: 0 auto;
     margin-top: 0px;
@@ -19,8 +21,75 @@
     color:#AFADB5;
 }
 
-@media(max-width: 900px) {
+.btn {
+    width: 100px;
+    height: 40px;
+    z-index: 1;
+    position: absolute;
+    right: 330px;
+    background-color: #518581;
+    border: transparent;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn__filter {
+    width: 100px;
+    height: 54px;
+    text-align: right;
+    padding: 7px;
+    color: #151411;
+    border: transparent;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 15px;
+    margin-left: 20px;
+    cursor: pointer;
+    background: url('../../../assets/image/filter.png') no-repeat left center;
+    // background-color: rgb(245, 245, 245);
+}
+
+@media(max-width: 1300px) {
     .block__input {
         max-width: 60%;
+    }
+    .btn {
+        right: 33%;
+    }
+}
+
+@media(max-width: 900px) {
+    .block__input {
+        max-width: 80%;
+    }
+    .btn {
+        right: 25%;
+    }
+}
+
+@media(max-width: 700px) {
+    .btn {
+        right: 30%;
+    }
+}
+
+@media(max-width: 590px) {
+    .block__input {
+        display: flex;
+        flex-direction: column;
+        height: 100px;
+    }
+    .btn {
+        position: relative;
+        position: relative;
+        top: 30px;
+    }
+    .btn__filter {
+        padding: 0;
+        margin: 0;
+        position: relative;
+        
     }
 }
