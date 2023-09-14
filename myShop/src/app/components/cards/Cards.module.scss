@@ -1,0 +1,22 @@
+.main__cards {
+    width: 1000px;
+    margin: 0 auto;
+    .title {
+        font-size: 22px;
+        color: #151411;
+        width: 260px;
+        margin: 20px 20px 20px 0;
+    }
+    .cards__section {
+        width: 100%;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 260px 260px 260px;
+        gap: 110px;
+    }
+}
+
+.block__card {
+    width: 260px;
+    height: 260px;
+}

@@ -2,6 +2,7 @@ import Navbar from './components/navbar/Navbar'
 import ProductTitle from './components/title/ProductTitle'
 import style from './App.module.scss'
 import Search from './components/search/Search'
+import Cards from './components/cards/Cards'
 // import {
 //   Routes,
 //   Route
@@ -15,6 +16,7 @@ const App = observer((): JSX.Element => {
       <Navbar />
       <ProductTitle/>
       <Search/>
+      <Cards/>
       {/* <Routes>
         <Route path="*" element={<NoMatch/>}/>
       </Routes> */}
