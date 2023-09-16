@@ -1,6 +1,8 @@
 import { observer } from 'mobx-react-lite'
 import { useEffect, useState } from 'react'
 import style from './Cards.module.scss'
+import Pagination from '../pagination/Pagination'
+import store from '../../../store/app/AppStoreProvider'
 
 interface dataProducts  {
   title: string;
@@ -8,18 +10,32 @@ interface dataProducts  {
   id: number;
 }
 
-const Cards = observer((): JSX.Element => {
-  const [data, setData] = useState<[]>([])
+const pageSize: number = 5
 
+const Cards = observer((): JSX.Element => {
+  const [data, setData] = useState([])
+  const [numb, setNumb] = useState<number>(1)
+  const [fullData, setFullData] = useState([])
+  // console.log(fullData, '<<<<<')
+  const handlePageChange = (numb: number): void => {
+    setNumb(numb)
+  }
+  console.log(numb, 'numb')
   useEffect(() => {
     async function fetchData(): Promise<void> {
       const req: Response = await fetch('https://jsonplaceholder.typicode.com/albums/1/photos')
       const res: [] =  await req.json()
-      setData(res)
+      const firstPageIndex = (numb - 1) * pageSize
+      const lastPageIndex = firstPageIndex + Math.floor(res.length / pageSize);
+      // console.log(lastPageIndex, 'firstPageIndex')
+      const resSlice = res.slice(firstPageIndex, lastPageIndex);
+      // console.log(resSlice, 'res')
+      setData(resSlice)
+      setFullData(res)
     }
     fetchData()
-  }, [])
-  // console.log(data)
+  }, [numb])
+  console.log(data, 'fullData')
   return (
     <div className={style.main__cards}>
       <h1 className={style.title}>
@@ -35,6 +51,12 @@ const Cards = observer((): JSX.Element => {
           </div>
         )}
       </section>
+      <div className={style.pagination__main}>
+        <Pagination
+          totalPages={pageSize}
+          onPageChange={handlePageChange}
+        />
+      </div>
     </div>
   )
 })

@@ -1,10 +1,13 @@
 import { makeAutoObservable } from 'mobx'
 
 class AppStoreProvider {
-
-    constructor() {
-        makeAutoObservable(this)
-    }
+  datas: [] = []
+  constructor() {
+    makeAutoObservable(this)
+  }
+  todos() {
+    this.datas = this.datas
+  }
 }
 
 const store = new AppStoreProvider()

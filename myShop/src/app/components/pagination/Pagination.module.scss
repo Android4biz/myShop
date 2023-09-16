@@ -1,0 +1,17 @@
+.pagination__list {
+  width: 100%;
+  display: flex;
+  list-style-type: none;
+  .item__pagination {
+    margin: 20px;
+  }
+}
+
+.pagination__block {
+  margin: 0 auto;
+  display: flex;
+}
+
+.btn {
+  width: 70px;
+}
