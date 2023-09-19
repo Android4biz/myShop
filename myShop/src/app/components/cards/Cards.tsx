@@ -10,11 +10,7 @@ interface dataProducts  {
   id: number;
 }
 
-const pageSize: number = 5
-
 const Cards = observer((): JSX.Element => {
-  const [data, setData] = useState([])
-  const [fullData, setFullData] = useState([])
 
   const handlePageChange = (page: number): void => {
     store.changePage(page)
@@ -24,11 +20,10 @@ const Cards = observer((): JSX.Element => {
     async function fetchData(): Promise<void> {
       const req: Response = await fetch('https://jsonplaceholder.typicode.com/albums/1/photos')
       const res: [] =  await req.json()
-      const firstPageIndex = (store.page - 1) * pageSize
-      const lastPageIndex = firstPageIndex + Math.floor(res.length / pageSize);
-      const resSlice = res.slice(firstPageIndex, lastPageIndex);
-      setData(resSlice)
-      setFullData(res)
+      const firstPageIndex: number = (store.page - 1) * store.totalPage
+      const lastPageIndex: number = firstPageIndex + Math.floor(res.length / store.totalPage);
+      const resSlice: dataProducts[] = res.slice(firstPageIndex, lastPageIndex);
+      store.todos(resSlice)
     }
     fetchData()
   }, [store.page])
@@ -39,7 +34,7 @@ const Cards = observer((): JSX.Element => {
         Total Product
       </h1>
       <section className={style.cards__section}>
-        {data.map((el: dataProducts) =>
+        {store.datas.map((el: dataProducts) =>
           <div className={style.cards__block}>
             <div className={style.cards__item}>
               <img className={style.block__card} key={el.id} src={el.url}/>
@@ -50,7 +45,7 @@ const Cards = observer((): JSX.Element => {
       </section>
       <div className={style.pagination__main}>
         <Pagination
-          totalPages={pageSize}
+          totalPages={store.totalPage}
           onPageChange={handlePageChange}
         />
       </div>

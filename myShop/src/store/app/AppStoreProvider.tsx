@@ -1,14 +1,20 @@
 import { makeAutoObservable } from 'mobx'
 
+interface arrData  {
+  title: string;
+  url?: string;
+  id: number;
+}
+
 class AppStoreProvider {
-  datas: [] = []
+  datas: arrData[] = []
   page: number = 1
   totalPage: number = 5
   constructor() {
     makeAutoObservable(this)
   }
-  todos() {
-    this.datas = this.datas
+  todos(arr: arrData[]) {
+    this.datas = arr
   }
   changePage(num: number){
     this.page = num
