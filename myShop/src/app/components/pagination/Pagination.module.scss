@@ -1,9 +1,15 @@
 .pagination__list {
   width: 100%;
   display: flex;
+  align-items: center;
   list-style-type: none;
   .item__pagination {
     margin: 20px;
+  }
+  .btn__pagination {
+    width: 20px;
+    border-radius: 10px;
+    border: transparent;
   }
 }
 
@@ -14,4 +20,7 @@
 
 .btn {
   width: 70px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
 }

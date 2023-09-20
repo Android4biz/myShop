@@ -33,6 +33,9 @@ class AppStoreProvider {
       this.page = 5
     }
   }
+  filterProduct(str: string) {
+    this.datas = this.datas.filter(item => str === item.title)
+  }
 }
 
 const store = new AppStoreProvider()

@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import style from './Cards.module.scss'
 import Pagination from '../pagination/Pagination'
 import store from '../../../store/app/AppStoreProvider'

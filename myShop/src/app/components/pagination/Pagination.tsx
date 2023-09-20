@@ -28,7 +28,7 @@ const Pagination = observer(({ totalPages, onPageChange }: Props): JSX.Element =
         {
           pageRange.map((page) => (
             <li key={page} className={style.item__pagination}>
-              <button onClick={() => onPageChange(page)}>{page}</button>
+              <button onClick={() => onPageChange(page)} className={style.btn__pagination}>{page}</button>
             </li>
           ))
         }
