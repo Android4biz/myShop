@@ -16,6 +16,8 @@ const Cards = observer((): JSX.Element => {
     store.changePage(page)
   }
 
+  // console.log(store.datas)
+
   useEffect(() => {
     async function fetchData(): Promise<void> {
       const req: Response = await fetch('https://jsonplaceholder.typicode.com/albums/1/photos')
