@@ -9,10 +9,9 @@ interface arrData  {
 class AppStoreProvider {
 
   datas: arrData[] | any = []
+  fullDatas: arrData[] | any = []
   page: number = 1
   totalPage: number = 5
-  // inputValue: string = ''
-
 
   constructor() {
     makeAutoObservable(this)
@@ -20,6 +19,10 @@ class AppStoreProvider {
 
   todos(arr: arrData[]) {
     this.datas = arr
+  }
+
+  fullTodos(massiv: any) {
+    this.fullDatas = massiv
   }
 
   changePage(num: number){
@@ -44,10 +47,7 @@ class AppStoreProvider {
 
   filterProduct(str: string) {
     if (str) {
-    //   this.datas = this.datas.filter((item: any) => item.title === str)
-    // } else if (str === '') {
-    //   this.datas = this.datas
-      this.datas = this.datas.filter((item: any) => item.title === str)
+      this.datas = this.fullDatas.filter((item: any) => item.title === str)
     } else if (!str) {
       this.datas = this.datas.map((item: any) => item)
     }

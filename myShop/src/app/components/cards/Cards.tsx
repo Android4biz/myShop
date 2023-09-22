@@ -11,12 +11,9 @@ interface dataProducts  {
 }
 
 const Cards = observer((): JSX.Element => {
-
   const handlePageChange = (page: number): void => {
     store.changePage(page)
   }
-
-  // console.log(store.datas)
 
   useEffect(() => {
     async function fetchData(): Promise<void> {
@@ -26,6 +23,7 @@ const Cards = observer((): JSX.Element => {
       const lastPageIndex: number = firstPageIndex + Math.floor(res.length / store.totalPage);
       const resSlice: dataProducts[] = res.slice(firstPageIndex, lastPageIndex);
       store.todos(resSlice)
+      store.fullTodos(res)
     }
     fetchData()
   }, [store.page])
@@ -54,5 +52,4 @@ const Cards = observer((): JSX.Element => {
     </div>
   )
 })
-
 export default Cards
