@@ -2,8 +2,8 @@ import { observer } from 'mobx-react-lite'
 import { useEffect } from 'react'
 import style from './Cards.module.scss'
 import Pagination from '../pagination/Pagination'
+import CardsItem from '../cards-item/CardsItem'
 import store from '../../../store/app/AppStoreProvider'
-
 interface dataProducts  {
   title: string;
   url?: string;
@@ -13,6 +13,10 @@ interface dataProducts  {
 const Cards = observer((): JSX.Element => {
   const handlePageChange = (page: number): void => {
     store.changePage(page)
+  }
+
+  const handleClickItem = () => {
+    store.clickItemCard()
   }
 
   useEffect(() => {
@@ -34,14 +38,21 @@ const Cards = observer((): JSX.Element => {
         Total Product
       </h1>
       <section className={style.cards__section}>
-        {store.datas.map((el: dataProducts) =>
-          <div className={style.cards__block}>
-            <div className={style.cards__item}>
+        { store.datas.map((el: dataProducts) =>
+          store.flagItem ?
+          <div className={style.cards__block} >
+            <div className={style.cards__item} onClick={handleClickItem}>
               <img className={style.block__card} key={el.id} src={el.url}/>
               <h3 className={style.title}>{el.title}</h3>
             </div>
-          </div>
-        )}
+          </div> :
+          <CardsItem
+            key={el.id}
+            id={el.id}
+            value={el.title} 
+          />
+          )
+        }
       </section>
       <div className={style.pagination__main}>
         <Pagination

@@ -1,17 +1,15 @@
 import { makeAutoObservable } from 'mobx'
-
 interface arrData  {
   title: string;
   url?: string;
   id: number;
 }
-
 class AppStoreProvider {
-
   datas: arrData[] | any = []
   fullDatas: arrData[] | any = []
   page: number = 1
   totalPage: number = 5
+  flagItem: boolean = true
 
   constructor() {
     makeAutoObservable(this)
@@ -53,6 +51,9 @@ class AppStoreProvider {
     }
   }
 
+  clickItemCard() {
+    this.flagItem = !this.flagItem
+  }
 }
 
 const store = new AppStoreProvider()

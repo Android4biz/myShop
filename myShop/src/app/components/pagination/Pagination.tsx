@@ -13,11 +13,11 @@ const Pagination = observer(({ totalPages, onPageChange }: Props): JSX.Element =
     pageRange.push(i)
   }
 
-  const handleNext = () => {
+  const handleNext = (): void => {
     store.nextClick()
   }
 
-  const handlePrevios = () => {
+  const handlePrevios = (): void => {
     store.previosClick()
   }
 

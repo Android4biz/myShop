@@ -4,15 +4,18 @@ import style from './App.module.scss'
 import Search from './components/search/Search'
 import Cards from './components/cards/Cards'
 import {observer} from 'mobx-react-lite'
-// import store from '../store/app/AppStoreProvider'
+import { Routes, Route } from 'react-router-dom'
 
 const App = observer((): JSX.Element => {
   return (
     <div className={style.app}>
-      <Navbar />
-      <ProductTitle/>
+      <Navbar/>
       <Search/>
-      <Cards/>
+      <Routes>
+        <Route path='/' element={<Navbar/>}></Route>
+        <Route path='/products' element={<Cards/>}></Route>
+      </Routes>
+      <ProductTitle/>
     </div>
   )
 })
