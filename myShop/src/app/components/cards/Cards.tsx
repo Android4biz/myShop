@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import style from './Cards.module.scss'
 import Pagination from '../pagination/Pagination'
 import CardsItem from '../cards-item/CardsItem'
@@ -11,12 +11,15 @@ interface dataProducts  {
 }
 
 const Cards = observer((): JSX.Element => {
+  const [ num, setNum ] = useState(1)
+
   const handlePageChange = (page: number): void => {
     store.changePage(page)
   }
 
-  const handleClickItem = () => {
-    store.clickItemCard()
+  const handleClickItem = (id: number) => {
+    store.clickItemCard(id)
+    setNum(id)
   }
 
   useEffect(() => {
@@ -38,20 +41,22 @@ const Cards = observer((): JSX.Element => {
         Total Product
       </h1>
       <section className={style.cards__section}>
-        { store.datas.map((el: dataProducts) =>
-          store.flagItem ?
+        { store.flagItem ? store.datas.map((el: dataProducts) =>
           <div className={style.cards__block} >
-            <div className={style.cards__item} onClick={handleClickItem}>
+            <div className={style.cards__item} onClick={()=>handleClickItem(el.id)}>
               <img className={style.block__card} key={el.id} src={el.url}/>
               <h3 className={style.title}>{el.title}</h3>
             </div>
-          </div> :
-          <CardsItem
-            key={el.id}
-            id={el.id}
-            value={el.title} 
-          />
-          )
+          </div>
+          ) : store.datas.map((i: dataProducts) => num === i.id && <div>
+            <CardsItem
+              key={num}
+              id={i.id}
+              value={i.title}
+              url={i.url}
+              clickBack={()=>handleClickItem(i.id)}
+            /> 
+          </div>)  
         }
       </section>
       <div className={style.pagination__main}>
@@ -63,4 +68,5 @@ const Cards = observer((): JSX.Element => {
     </div>
   )
 })
+
 export default Cards

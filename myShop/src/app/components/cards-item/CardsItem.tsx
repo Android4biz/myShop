@@ -1,16 +1,19 @@
-import store from '../../../store/app/AppStoreProvider'
+import style from './CardsItem.module.scss'
 
 interface cardItemType {
   id: number
   key: number
   value: string
+  url?: string
+  clickBack?: any
 }
 
-const CardsItem = ({ value, id, key }: cardItemType) => {
+const CardsItem = ({ value, url, key, clickBack }: cardItemType) => {
 
   return (
     <>
-      {id && key ? 'str' : value}
+      <img className={style.img__card} key={key} src={url} onClick={clickBack}/>
+      { value }
     </>
   )
 }

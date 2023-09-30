@@ -9,13 +9,14 @@ import { Routes, Route } from 'react-router-dom'
 const App = observer((): JSX.Element => {
   return (
     <div className={style.app}>
-      <Navbar/>
-      <Search/>
       <Routes>
-        <Route path='/' element={<Navbar/>}></Route>
+        <Route path='/*' element={<Navbar/>}></Route>
+      </Routes>
+      <Search/>
+      <ProductTitle/>
+      <Routes>
         <Route path='/products' element={<Cards/>}></Route>
       </Routes>
-      <ProductTitle/>
     </div>
   )
 })

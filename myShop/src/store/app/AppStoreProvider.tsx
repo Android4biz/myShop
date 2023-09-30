@@ -10,6 +10,7 @@ class AppStoreProvider {
   page: number = 1
   totalPage: number = 5
   flagItem: boolean = true
+  id: number = 0
 
   constructor() {
     makeAutoObservable(this)
@@ -51,7 +52,8 @@ class AppStoreProvider {
     }
   }
 
-  clickItemCard() {
+  clickItemCard(id: number) {
+    this.id = id
     this.flagItem = !this.flagItem
   }
 }
