@@ -4,10 +4,14 @@ import style from './Cards.module.scss'
 import Pagination from '../pagination/Pagination'
 import CardsItem from '../cards-item/CardsItem'
 import store from '../../../store/app/AppStoreProvider'
+import {shop} from '../../api/shop'
+
 interface dataProducts  {
   title: string;
-  url?: string;
+  img?: string;
   id: number;
+  category: string;
+  price: number;
 }
 
 const Cards = observer((): JSX.Element => {
@@ -24,13 +28,11 @@ const Cards = observer((): JSX.Element => {
 
   useEffect(() => {
     async function fetchData(): Promise<void> {
-      const req: Response = await fetch('https://jsonplaceholder.typicode.com/albums/1/photos')
-      const res: [] =  await req.json()
       const firstPageIndex: number = (store.page - 1) * store.totalPage
-      const lastPageIndex: number = firstPageIndex + Math.floor(res.length / store.totalPage);
-      const resSlice: dataProducts[] = res.slice(firstPageIndex, lastPageIndex);
+      const lastPageIndex: number = firstPageIndex + Math.floor(shop.length / store.totalPage);
+      const resSlice: dataProducts[] = shop.slice(firstPageIndex, lastPageIndex);
       store.todos(resSlice)
-      store.fullTodos(res)
+      store.fullTodos(shop)
     }
     fetchData()
   }, [store.page])
@@ -44,8 +46,10 @@ const Cards = observer((): JSX.Element => {
         { store.flagItem ? store.datas.map((el: dataProducts) =>
           <div className={style.cards__block} >
             <div className={style.cards__item} onClick={()=>handleClickItem(el.id)}>
-              <img className={style.block__card} key={el.id} src={el.url}/>
+              <img className={style.block__card} key={el.id} src={el.img}/>
+              <h5 className={style.title__h5}>{el.category}</h5>
               <h3 className={style.title}>{el.title}</h3>
+              <span>$ {el.price}</span>
             </div>
           </div>
           ) : store.datas.map((i: dataProducts) => num === i.id && <div>
@@ -53,7 +57,7 @@ const Cards = observer((): JSX.Element => {
               key={num}
               id={i.id}
               value={i.title}
-              url={i.url}
+              url={i.img}
               clickBack={()=>handleClickItem(i.id)}
             /> 
           </div>)  
