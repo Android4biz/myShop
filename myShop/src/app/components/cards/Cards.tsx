@@ -4,7 +4,7 @@ import style from './Cards.module.scss'
 import Pagination from '../pagination/Pagination'
 import CardsItem from '../cards-item/CardsItem'
 import store from '../../../store/app/AppStoreProvider'
-import {shop} from '../../api/shop'
+import { shop } from '../../api/shop'
 
 interface dataProducts  {
   title: string;
@@ -36,7 +36,7 @@ const Cards = observer((): JSX.Element => {
     }
     fetchData()
   }, [store.page])
-
+  
   return (
     <div className={style.main__cards}>
       <h1 className={style.title}>

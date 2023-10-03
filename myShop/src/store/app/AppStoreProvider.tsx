@@ -7,6 +7,7 @@ interface arrData  {
 class AppStoreProvider {
   datas: arrData[] | any = []
   fullDatas: arrData[] | any = []
+  catArr: [] = []
   page: number = 1
   totalPage: number = 5
   flagItem: boolean = true
@@ -49,6 +50,12 @@ class AppStoreProvider {
       this.datas = this.fullDatas.filter((item: any) => item.title === str)
     } else if (!str) {
       this.datas = this.datas.map((item: any) => item)
+    }
+  }
+
+  filterTag(str: string) {
+    if(str) {
+      this.fullDatas = this.fullDatas.filter((item: any) => item.category === str)
     }
   }
 
