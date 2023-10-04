@@ -1,3 +1,9 @@
+.products {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
 .cat__item {
   list-style-type: none;
 }
@@ -6,5 +12,24 @@
   width: 300px;
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
   margin: 50px auto 50px auto;
+  .category__item {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
+.img__categories {
+  width: 260px;
+  height: 360px;
+}
+
+.block__product {
+  width: 300px;
+}
+
+.product__item {
+  width: 100%;
 }

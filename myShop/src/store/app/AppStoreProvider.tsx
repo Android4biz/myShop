@@ -12,9 +12,15 @@ class AppStoreProvider {
   totalPage: number = 5
   flagItem: boolean = true
   id: number = 0
+  toggleCategory: boolean = false
+  arrCategory: [] = []
 
   constructor() {
     makeAutoObservable(this)
+  }
+
+  toggleFn() {
+    this.toggleCategory = !this.toggleCategory
   }
 
   todos(arr: arrData[]) {
@@ -57,6 +63,10 @@ class AppStoreProvider {
     if(str) {
       this.fullDatas = this.fullDatas.filter((item: any) => item.category === str)
     }
+  }
+
+  filterCategory(str: string) {
+    this.arrCategory = this.fullDatas.filter((item: any) => item.category === str)
   }
 
   clickItemCard(id: number) {

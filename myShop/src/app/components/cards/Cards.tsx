@@ -21,7 +21,7 @@ const Cards = observer((): JSX.Element => {
     store.changePage(page)
   }
 
-  const handleClickItem = (id: number) => {
+  const handleClickItem = (id: number): void => {
     store.clickItemCard(id)
     setNum(id)
   }
