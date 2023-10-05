@@ -2,6 +2,7 @@ import store from '../../../store/app/AppStoreProvider'
 import { shop } from '../../api/shop'
 import style from './Categories.module.scss'
 import {observer} from 'mobx-react-lite'
+import { useState } from 'react'
 
 interface categoryArray {
   category: string,
@@ -13,6 +14,8 @@ interface categoryArray {
 
 const Categories = observer((): JSX.Element => {
 
+  const [activeButton, setActiveButton] = useState('')
+
   let cat = shop.map(item => item.category)
   let catSet = new Set(cat)
 
@@ -21,26 +24,38 @@ const Categories = observer((): JSX.Element => {
     store.fullTodos(shop)
     store.toggleFn()
     store.filterCategory(item)
+    // store.categoryToggle(id)
+    setActiveButton(item)
   }
 
   return (
     <div className={style.category__block}>
       <div className={style.category__item}>
-        { Array.from(catSet).map(item => <ul>
-          <li className={style.cat__item}><button onClick={() => handleClick(item)}>{ item }</button></li>
+        { Array.from(catSet).map((item, ind) => <ul>
+          <li
+            className={style.cat__item}
+            key={ind}
+          >
+            <button
+              onClick={() => handleClick(item)}
+              className={ item === activeButton ? style.active : style.btn }
+            >
+              { item }
+            </button>
+          </li>
         </ul>) }
       </div>
       <div className={style.products}>
         { store.toggleCategory ?
           store.arrCategory.map((el: categoryArray) =>
-            <div className={style.block__product}>
-              <div className={style.product__item}>
+            <ul className={style.block__product}>
+              <li className={style.product__item}>
                 <img className={style.img__categories} key={el.id} src={el.img}/>
                 <h5 >{el.category}</h5>
                 <h3 >{el.title}</h3>
                 <span>$ {el.price}</span>
-              </div>
-            </div>)
+              </li>
+            </ul>)
         : false }
       </div>
     </div>

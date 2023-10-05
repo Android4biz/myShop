@@ -69,6 +69,10 @@ class AppStoreProvider {
     this.arrCategory = this.fullDatas.filter((item: any) => item.category === str)
   }
 
+  // categoryToggle(id: number) {
+  //   this.fullDatas = this.arrCategory.filter((_, ind) => id === ind)
+  // }
+
   clickItemCard(id: number) {
     this.id = id
     this.flagItem = !this.flagItem
