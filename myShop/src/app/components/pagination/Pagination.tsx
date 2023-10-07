@@ -15,10 +15,12 @@ const Pagination = observer(({ totalPages, onPageChange }: Props): JSX.Element =
 
   const handleNext = (): void => {
     store.nextClick()
+    onPageChange(store.page)
   }
 
   const handlePrevios = (): void => {
     store.previosClick()
+    onPageChange(store.page)
   }
 
   return (
@@ -28,7 +30,7 @@ const Pagination = observer(({ totalPages, onPageChange }: Props): JSX.Element =
         {
           pageRange.map((page) => (
             <li key={page} className={style.item__pagination}>
-              <button onClick={() => onPageChange(page)} className={style.btn__pagination}>{page}</button>
+              <button onClick={() => onPageChange(page)} className={store.tglpage && page === store.pageNum ? style.active : style.btn__pagination}>{page}</button>
             </li>
           ))
         }

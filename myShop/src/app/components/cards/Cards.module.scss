@@ -16,11 +16,11 @@
     margin: 0 auto;
     display: grid;
     grid-template-columns: 260px 260px 260px;
-    gap: 110px;
+    column-gap: 110px;
   }
   .cards__block {
     width: 260px;
-    height: 360px;
+    height: 400px;
   }
   .cards__item {
     cursor: pointer;
@@ -36,4 +36,10 @@
   width: 100%;
   display: flex;
   margin-bottom: 100px;
+}
+
+.btn {
+  width: 45px;
+  position: relative;
+  left: 190px;
 }

@@ -14,6 +14,10 @@ class AppStoreProvider {
   id: number = 0
   toggleCategory: boolean = false
   arrCategory: [] = []
+  itm: string = ''
+  tglItem: boolean = false
+  pageNum: number = 1
+  tglpage: boolean = false
 
   constructor() {
     makeAutoObservable(this)
@@ -69,13 +73,19 @@ class AppStoreProvider {
     this.arrCategory = this.fullDatas.filter((item: any) => item.category === str)
   }
 
-  // categoryToggle(id: number) {
-  //   this.fullDatas = this.arrCategory.filter((_, ind) => id === ind)
-  // }
-
   clickItemCard(id: number) {
     this.id = id
     this.flagItem = !this.flagItem
+  }
+
+  tgl(itm: string) {
+    this.itm = itm
+    this.tglItem = true
+  }
+
+  paginationTgl(pageNum: number) {
+    this.pageNum = pageNum
+    this.tglpage = true
   }
 }
 

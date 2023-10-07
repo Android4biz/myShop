@@ -14,6 +14,12 @@
   }
 }
 
+.active {
+  width: 20px;
+  border: 2px gray solid;
+  border-radius: 10px;
+}
+
 .pagination__block {
   margin: 0 auto;
   display: flex;

@@ -1,0 +1,19 @@
+.user__block {
+  display: flex;
+  justify-content: space-between;
+  width: 90px;
+}
+
+.cart {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  background: url('../../../assets/image/cart.png') no-repeat;
+}
+
+.user {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  background: url('../../../assets/image/user.png') no-repeat;
+}

@@ -2,7 +2,6 @@ import store from '../../../store/app/AppStoreProvider'
 import { shop } from '../../api/shop'
 import style from './Categories.module.scss'
 import {observer} from 'mobx-react-lite'
-import { useState } from 'react'
 
 interface categoryArray {
   category: string,
@@ -14,8 +13,6 @@ interface categoryArray {
 
 const Categories = observer((): JSX.Element => {
 
-  const [activeButton, setActiveButton] = useState('')
-
   let cat = shop.map(item => item.category)
   let catSet = new Set(cat)
 
@@ -24,8 +21,8 @@ const Categories = observer((): JSX.Element => {
     store.fullTodos(shop)
     store.toggleFn()
     store.filterCategory(item)
-    // store.categoryToggle(id)
-    setActiveButton(item)
+    store.tgl(item)
+    // store.paginationTgl()
   }
 
   return (
@@ -38,7 +35,7 @@ const Categories = observer((): JSX.Element => {
           >
             <button
               onClick={() => handleClick(item)}
-              className={ item === activeButton ? style.active : style.btn }
+              className={ store.tglItem && item === store.itm ? style.active : style.btn }
             >
               { item }
             </button>

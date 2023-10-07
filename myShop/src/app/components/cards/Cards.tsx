@@ -19,6 +19,7 @@ const Cards = observer((): JSX.Element => {
 
   const handlePageChange = (page: number): void => {
     store.changePage(page)
+    store.paginationTgl(page)
   }
 
   const handleClickItem = (id: number): void => {
@@ -50,6 +51,7 @@ const Cards = observer((): JSX.Element => {
               <h5 className={style.title__h5}>{el.category}</h5>
               <h3 className={style.title}>{el.title}</h3>
               <span>$ {el.price}</span>
+              <button className={style.btn}>Купить</button>
             </div>
           </div>
           ) : store.datas.map((i: dataProducts) => num === i.id && <div>
