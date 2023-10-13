@@ -12,6 +12,7 @@ interface dataProducts  {
   id: number;
   category: string;
   price: number;
+  count: number
 }
 
 const Cards = observer((): JSX.Element => {
@@ -27,17 +28,21 @@ const Cards = observer((): JSX.Element => {
     setNum(id)
   }
 
+  const handleClickBasket = (id: number): void => {
+    store.countAdd(id)
+  }
+
   useEffect(() => {
     async function fetchData(): Promise<void> {
       const firstPageIndex: number = (store.page - 1) * store.totalPage
-      const lastPageIndex: number = firstPageIndex + Math.floor(shop.length / store.totalPage);
+      const lastPageIndex: number = firstPageIndex + Math.floor(shop.length / store.totalPage)
       const resSlice: dataProducts[] = shop.slice(firstPageIndex, lastPageIndex);
       store.todos(resSlice)
       store.fullTodos(shop)
     }
     fetchData()
   }, [store.page])
-  
+
   return (
     <div className={style.main__cards}>
       <h1 className={style.title}>
@@ -51,7 +56,10 @@ const Cards = observer((): JSX.Element => {
               <h5 className={style.title__h5}>{el.category}</h5>
               <h3 className={style.title}>{el.title}</h3>
               <span>$ {el.price}</span>
-              <button className={style.btn}>Купить</button>
+            </div>
+            <div className={style.count__block}>
+              <p>количество { el.count } шт. в корзину</p>
+              <button className={style.btn} onClick={() => handleClickBasket(el.id)}>Купить</button>
             </div>
           </div>
           ) : store.datas.map((i: dataProducts) => num === i.id && <div>

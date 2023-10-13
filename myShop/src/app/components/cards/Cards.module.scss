@@ -17,6 +17,7 @@
     display: grid;
     grid-template-columns: 260px 260px 260px;
     column-gap: 110px;
+    row-gap: 90px;
   }
   .cards__block {
     width: 260px;
@@ -40,6 +41,9 @@
 
 .btn {
   width: 45px;
-  position: relative;
-  left: 190px;
+}
+
+.count__block {
+  display: flex;
+  justify-content: space-between;
 }
