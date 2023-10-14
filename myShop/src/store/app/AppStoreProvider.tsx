@@ -1,12 +1,10 @@
 import { makeAutoObservable } from 'mobx'
-// import {shop} from '../../app/api/shop'
 interface arrData  {
   title: string;
   url?: string;
   id: number;
 }
-
-interface countAdd  {
+interface countAddType  {
   id: number;
   count: number
 }
@@ -48,6 +46,7 @@ class AppStoreProvider {
 
   changePage(num: number){
     this.page = num
+    localStorage.setItem('page', JSON.stringify(this.page))
   }
 
   nextClick() {
@@ -97,12 +96,14 @@ class AppStoreProvider {
   paginationTgl(pageNum: number) {
     this.pageNum = pageNum
     this.tglpage = true
+    localStorage.setItem('pageNum', JSON.stringify(this.pageNum))
   }
 
   countAdd(id: number) {
     this.idCart = id
-    this.datas.map((e: countAdd) => e.id === this.idCart ? e.count++ : '')
+    this.datas.map((e: countAddType) => e.id === this.idCart ? e.count++ : '')
     this.basketCount2++
+    // localStorage.setItem('>>>', JSON.stringify(this.basketCount2))
   }
 }
 

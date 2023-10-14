@@ -1,6 +1,7 @@
 import {observer} from "mobx-react-lite"
 import store from '../../../store/app/AppStoreProvider'
 import style from './Pagination.module.scss'
+import React from 'react'
 
 interface Props {
   totalPages: number;
@@ -22,6 +23,12 @@ const Pagination = observer(({ totalPages, onPageChange }: Props): JSX.Element =
     store.previosClick()
     onPageChange(store.page)
   }
+
+  React.useEffect(() => {
+    if(store.page) {
+      store.page = Number(localStorage.getItem('page'))
+    }
+  }, [store.page])
 
   return (
     <div className={style.pagination__block}>
