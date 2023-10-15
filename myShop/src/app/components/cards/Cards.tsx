@@ -17,6 +17,7 @@ interface dataProducts  {
 
 const Cards = observer((): JSX.Element => {
   const [ num, setNum ] = useState(1)
+  // const [ cnt, setCnt ] = useState(1)
 
   const handlePageChange = (page: number): void => {
     store.changePage(page)
@@ -42,6 +43,10 @@ const Cards = observer((): JSX.Element => {
     }
     fetchData()
   }, [store.page])
+
+  // useEffect(() => {
+  //   store.basketCount2 = Number(localStorage.getItem('datas'))
+  // }, [store.basketCount2])
 
   return (
     <div className={style.main__cards}>
