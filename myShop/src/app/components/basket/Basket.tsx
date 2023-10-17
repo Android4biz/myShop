@@ -12,7 +12,7 @@ const Basket = observer(() => {
 
   return (
     <div className={style.user__block}>
-      <div className={style.count__basket}>{store.basketCount > 0 ? store.basketCount : ''}</div>
+      <div className={style.count__basket}>{store.basketCount > 0 ? store.basketCount  : ''}</div>
       <NavLink
         to='/basket'
         className={style.cart}

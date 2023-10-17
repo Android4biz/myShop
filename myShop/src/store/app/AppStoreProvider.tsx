@@ -23,6 +23,7 @@ class AppStoreProvider {
   pageNum: number = 1
   tglpage: boolean = false
 
+  // basketCount2: number = 0
   basketCount: number = 0
   idCart: number = 0
   cardsArr: any[] = []
@@ -109,7 +110,7 @@ class AppStoreProvider {
     this.idCart = id
     this.datas.map((e: countAddType) => e.id === this.idCart && e.count > 0 ? e.count-- : '')
     this.basketCount--
-    localStorage.setItem('basket--', JSON.stringify(this.basketCount))
+    localStorage.setItem('basket', JSON.stringify(this.basketCount))
   }
 }
 
