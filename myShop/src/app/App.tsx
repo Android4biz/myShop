@@ -12,7 +12,9 @@ const App = observer((): JSX.Element => {
       <Routes>
         <Route path='/*' element={<Navbar/>}></Route>
       </Routes>
-      <Search/>
+      <Routes>
+        <Route path='/products' element={<Search/>}></Route>
+      </Routes>
       <Routes>
         <Route path='/products' element={<Cards/>}></Route>
         <Route path='/categories' element={<Categories/>}></Route>

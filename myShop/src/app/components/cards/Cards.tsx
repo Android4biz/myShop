@@ -17,7 +17,6 @@ interface dataProducts  {
 
 const Cards = observer((): JSX.Element => {
   const [ num, setNum ] = useState(1)
-  // const [ cnt, setCnt ] = useState(1)
 
   const handlePageChange = (page: number): void => {
     store.changePage(page)
@@ -30,7 +29,11 @@ const Cards = observer((): JSX.Element => {
   }
 
   const handleClickBasket = (id: number): void => {
-    store.countAdd(id)
+    store.countAddIncrement(id)
+  }
+
+  const handleClickBasketDecrement = (id: number): void => {
+    store.countAddDecrement(id)
   }
 
   useEffect(() => {
@@ -43,10 +46,6 @@ const Cards = observer((): JSX.Element => {
     }
     fetchData()
   }, [store.page])
-
-  // useEffect(() => {
-  //   store.basketCount2 = Number(localStorage.getItem('datas'))
-  // }, [store.basketCount2])
 
   return (
     <div className={style.main__cards}>
@@ -64,7 +63,8 @@ const Cards = observer((): JSX.Element => {
             </div>
             <div className={style.count__block}>
               <p>количество { el.count } шт. в корзину</p>
-              <button className={style.btn} onClick={() => handleClickBasket(el.id)}>Купить</button>
+              <button className={style.btn} onClick={() => handleClickBasket(el.id)}>+</button>
+              <button className={style.btn} onClick={() => handleClickBasketDecrement(el.id)}>-</button>
             </div>
           </div>
           ) : store.datas.map((i: dataProducts) => num === i.id && <div>

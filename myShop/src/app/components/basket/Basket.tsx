@@ -5,9 +5,11 @@ import style from './Basket.module.scss'
 import {NavLink} from 'react-router-dom'
 
 const Basket = observer(() => {
+  
   React.useEffect(() => {
     store.basketCount = Number(localStorage.getItem('basket'))
   }, [store.basketCount])
+
   return (
     <div className={style.user__block}>
       <div className={style.count__basket}>{store.basketCount > 0 ? store.basketCount : ''}</div>

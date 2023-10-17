@@ -11,7 +11,7 @@ const Navbar = observer((): JSX.Element => {
       <nav className={style.navbar}>
         <div className={style.logo }>
           <div className={style.logo__image}></div>
-          <div className={style.logo__title}>Lalasia</div>
+          <div className={style.logo__title}><NavLink to='/' className={style.navlink}>Lalasia</NavLink></div>
         </div>
         <ul className={style.list__navbar}>
           <li className={style.item__navbar}>
@@ -34,11 +34,12 @@ const Navbar = observer((): JSX.Element => {
           </li>
         </ul>
         <Routes>
-          <Route path='*' element={<Basket/>}/>
+          <Route path='/*' element={<Basket/>}/>
         </Routes>
-        {/* <Basket/> */}
       </nav>
-      <ProductTitle/>
+      <Routes>
+        <Route path='/' element={<ProductTitle/>}/>
+      </Routes>
     </>
   )
 })
