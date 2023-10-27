@@ -1,4 +1,4 @@
-interface shopApi {
+export interface shopApi {
   id: number,
   img: string,
   title: string,

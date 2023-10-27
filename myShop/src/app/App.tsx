@@ -5,6 +5,7 @@ import Cards from './components/cards/Cards'
 import {observer} from 'mobx-react-lite'
 import { Routes, Route } from 'react-router-dom'
 import Categories from './components/categories'
+import Cart from './components/cart'
 
 const App = observer((): JSX.Element => {
   return (
@@ -18,6 +19,9 @@ const App = observer((): JSX.Element => {
       <Routes>
         <Route path='/products' element={<Cards/>}></Route>
         <Route path='/categories' element={<Categories/>}></Route>
+      </Routes>
+      <Routes>
+        <Route path='/cart' element={<Cart/>}></Route>
       </Routes>
     </div>
   )

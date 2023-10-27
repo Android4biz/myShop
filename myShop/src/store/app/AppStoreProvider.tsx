@@ -1,32 +1,27 @@
 import { makeAutoObservable } from 'mobx'
-interface arrData  {
-  title: string;
-  url?: string;
-  id: number;
-}
+import {shop, shopApi} from '../../app/api/shop';
+
 interface countAddType  {
   id: number;
   count: number
 }
 class AppStoreProvider {
-  datas: arrData[] | any = []
-  fullDatas: arrData[] | any = []
+  datas: shopApi[] | [] = shop
+  fullDatas: shopApi[] | [] = []
   catArr: [] = []
   page: number = 1
   totalPage: number = 5
   flagItem: boolean = true
   id: number = 0
   toggleCategory: boolean = false
-  arrCategory: [] = []
+  arrCategory: shopApi[] = []
   itm: string = ''
   tglItem: boolean = false
   pageNum: number = 1
   tglpage: boolean = false
 
-  // basketCount2: number = 0
   basketCount: number = 0
   idCart: number = 0
-  cardsArr: any[] = []
 
   constructor() {
     makeAutoObservable(this)
@@ -36,8 +31,8 @@ class AppStoreProvider {
     this.toggleCategory = !this.toggleCategory
   }
 
-  todos(arr: arrData[]) {
-    this.datas = arr
+  todos(shop: shopApi[]) {
+    this.datas = shop
   }
 
   fullTodos(massiv: any) {
