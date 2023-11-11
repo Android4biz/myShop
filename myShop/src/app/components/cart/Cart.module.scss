@@ -1,12 +1,46 @@
-.cart__item {
+.cart__list {
   width: 800px;
   margin: 0 auto;
   text-align: center;
 }
 
 .cart {
-  width: 400px;
+  width: 600px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.cart__item__title {
+  width: 200px;
+  height: 50px;
+}
+
+.cart__item {
+  text-align: center;
+}
+
+.btn__block {
+  width: 100%;
+}
+
+.btn {
+  width: 30px;
+}
+
+.block__remove {
+  width: 20px;
+  display: flex;
+  align-self: center;
+}
+
+.btn__remove {
+  width: 100%;
+  border: transparent;
+  border-radius: 20px;
+  background: grey;
+  color: black;
+  cursor: pointer;
 }

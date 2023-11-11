@@ -5,6 +5,7 @@ import Pagination from '../pagination/Pagination'
 import CardsItem from '../cards-item/CardsItem'
 import store from '../../../store/app/AppStoreProvider'
 import { shop, shopApi } from '../../api/shop'
+// import cartStore from '../../../store/app/CartStore'
 
 const Cards = observer((): JSX.Element => {
   const [ num, setNum ] = useState(1)
@@ -23,6 +24,11 @@ const Cards = observer((): JSX.Element => {
     store.countAddIncrement(id)
   }
 
+  // const handleAddCart = (item: any) => {
+  //   cartStore.addItem(item)
+  //   // store.count
+  // }
+
   const handleClickBasketDecrement = (id: number): void => {
     store.countAddDecrement(id)
   }
@@ -37,7 +43,7 @@ const Cards = observer((): JSX.Element => {
     }
     fetchData()
   }, [store.page])
-  console.log(store.datas.map(i => i.count), '<<<')
+  
   return (
     <div className={style.main__cards}>
       <h1 className={style.title}>

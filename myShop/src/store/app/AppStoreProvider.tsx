@@ -23,8 +23,12 @@ class AppStoreProvider {
   basketCount: number = 0
   idCart: number = 0
 
+  count: number[] = []
+
   constructor() {
     makeAutoObservable(this)
+    // localStorage.setItem('datas', JSON.stringify(this.datas))
+    // localStorage.getItem('datas')
   }
 
   toggleFn() {
@@ -33,6 +37,7 @@ class AppStoreProvider {
 
   todos(shop: shopApi[]) {
     this.datas = shop
+    // localStorage.setItem('datas', JSON.stringify(this.datas))
   }
 
   fullTodos(massiv: any) {
@@ -99,6 +104,8 @@ class AppStoreProvider {
     this.datas.map((e: countAddType) => e.id === this.idCart ? e.count++ : '')
     this.basketCount++
     localStorage.setItem('basket', JSON.stringify(this.basketCount))
+    // this.count = this.datas.map((e: countAddType) => e.count)
+    // localStorage.setItem('number', JSON.stringify(this.count))
   }
 
   countAddDecrement(id: number) {
@@ -106,6 +113,23 @@ class AppStoreProvider {
     this.datas.map((e: countAddType) => e.id === this.idCart && e.count > 0 ? e.count-- : '')
     this.basketCount--
     localStorage.setItem('basket', JSON.stringify(this.basketCount))
+  }
+
+  countBtnMax(id: number) {
+    this.idCart = id
+    this.datas.map((e: countAddType) => e.id === this.idCart ? e.count++ : '')
+    this.basketCount++
+  }
+
+  countBtnMin(id: number) {
+    this.idCart = id
+    this.datas.map((e: countAddType) => e.id === this.idCart ? e.count-- : '')
+    this.basketCount--
+  }
+
+  removeCartItem(id: number) {
+    this.idCart = id
+    this.datas = this.datas.filter((e: countAddType) => e.id !== this.idCart)
   }
 }
 
