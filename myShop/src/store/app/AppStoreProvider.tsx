@@ -22,8 +22,8 @@ class AppStoreProvider {
 
   basketCount: number = 0
   idCart: number = 0
-
-  count: number[] = []
+  tgladd: boolean = false
+  // count: number = 0
 
   constructor() {
     makeAutoObservable(this)
@@ -96,14 +96,14 @@ class AppStoreProvider {
   paginationTgl(pageNum: number) {
     this.pageNum = pageNum
     this.tglpage = true
-    localStorage.setItem('pageNum', JSON.stringify(this.pageNum))
+    // localStorage.setItem('pageNum', JSON.stringify(this.pageNum))
   }
 
   countAddIncrement(id: number) {
     this.idCart = id
     this.datas.map((e: countAddType) => e.id === this.idCart ? e.count++ : '')
     this.basketCount++
-    localStorage.setItem('basket', JSON.stringify(this.basketCount))
+    // localStorage.setItem('basket', JSON.stringify(this.basketCount))
     // this.count = this.datas.map((e: countAddType) => e.count)
     // localStorage.setItem('number', JSON.stringify(this.count))
   }
@@ -112,7 +112,7 @@ class AppStoreProvider {
     this.idCart = id
     this.datas.map((e: countAddType) => e.id === this.idCart && e.count > 0 ? e.count-- : '')
     this.basketCount--
-    localStorage.setItem('basket', JSON.stringify(this.basketCount))
+    // localStorage.setItem('basket', JSON.stringify(this.basketCount))
   }
 
   countBtnMax(id: number) {
@@ -130,7 +130,13 @@ class AppStoreProvider {
   removeCartItem(id: number) {
     this.idCart = id
     this.datas = this.datas.filter((e: countAddType) => e.id !== this.idCart)
+    this.basketCount--
   }
+
+  addRemove(id: number) {
+    this.idCart = id
+    this.tgladd = !this.tgladd
+  }  
 }
 
 const store = new AppStoreProvider()

@@ -24,11 +24,6 @@ const Cards = observer((): JSX.Element => {
     store.countAddIncrement(id)
   }
 
-  // const handleAddCart = (item: any) => {
-  //   cartStore.addItem(item)
-  //   // store.count
-  // }
-
   const handleClickBasketDecrement = (id: number): void => {
     store.countAddDecrement(id)
   }
@@ -58,11 +53,16 @@ const Cards = observer((): JSX.Element => {
               <h3 className={style.title}>{el.title}</h3>
               <span>$ {el.price}</span>
             </div>
-            <div className={style.count__block}>
+            {store.tgladd && el.id === store.idCart ? <div className={style.count__block}>
               <p>количество { el.count } шт. в корзину</p>
               <button className={style.btn} onClick={() => handleClickBasket(el.id)}>+</button>
               <button className={style.btn} onClick={() => handleClickBasketDecrement(el.id)}>-</button>
+              <button className={style.btn} style={{ width: 70 }} onClick={() => store.addRemove(el.id)}>Remove</button>
             </div>
+            :
+            <div className={style.count__block}>
+              <button className={style.btn} onClick={()=> store.addRemove(el.id)}>Add</button>
+            </div>}
           </div>
           ) : store.datas.map((i: shopApi) => num === i.id && <div>
             <CardsItem
