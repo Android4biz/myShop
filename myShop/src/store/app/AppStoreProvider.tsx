@@ -3,7 +3,8 @@ import {shop, shopApi} from '../../app/api/shop';
 
 interface countAddType  {
   id: number;
-  count: number
+  count: number;
+  selected?: boolean;
 }
 class AppStoreProvider {
   datas: shopApi[] | [] = shop
@@ -15,15 +16,13 @@ class AppStoreProvider {
   id: number = 0
   toggleCategory: boolean = false
   arrCategory: shopApi[] = []
-  itm: string = ''
   tglItem: boolean = false
   pageNum: number = 1
   tglpage: boolean = false
-
-  basketCount: number = 0
   idCart: number = 0
-  tgladd: boolean = false
-  // count: number = 0
+  countAdd: number = 0
+
+  // cnt: number = 0
 
   constructor() {
     makeAutoObservable(this)
@@ -88,11 +87,6 @@ class AppStoreProvider {
     this.flagItem = !this.flagItem
   }
 
-  tgl(itm: string) {
-    this.itm = itm
-    this.tglItem = true
-  }
-
   paginationTgl(pageNum: number) {
     this.pageNum = pageNum
     this.tglpage = true
@@ -102,7 +96,7 @@ class AppStoreProvider {
   countAddIncrement(id: number) {
     this.idCart = id
     this.datas.map((e: countAddType) => e.id === this.idCart ? e.count++ : '')
-    this.basketCount++
+    this.countAdd++
     // localStorage.setItem('basket', JSON.stringify(this.basketCount))
     // this.count = this.datas.map((e: countAddType) => e.count)
     // localStorage.setItem('number', JSON.stringify(this.count))
@@ -111,32 +105,49 @@ class AppStoreProvider {
   countAddDecrement(id: number) {
     this.idCart = id
     this.datas.map((e: countAddType) => e.id === this.idCart && e.count > 0 ? e.count-- : '')
-    this.basketCount--
+    this.countAdd--
     // localStorage.setItem('basket', JSON.stringify(this.basketCount))
   }
 
   countBtnMax(id: number) {
     this.idCart = id
     this.datas.map((e: countAddType) => e.id === this.idCart ? e.count++ : '')
-    this.basketCount++
   }
 
   countBtnMin(id: number) {
     this.idCart = id
     this.datas.map((e: countAddType) => e.id === this.idCart ? e.count-- : '')
-    this.basketCount--
   }
 
-  removeCartItem(id: number) {
+  removeCartItem(id: number, count: number) {
     this.idCart = id
     this.datas = this.datas.filter((e: countAddType) => e.id !== this.idCart)
-    this.basketCount--
+    this.datas.map((e: any) => {
+      if(e.id === this.idCart) {
+        e.count - count
+      }
+    })
   }
 
-  addRemove(id: number) {
+  addClick(id: number) {
     this.idCart = id
-    this.tgladd = !this.tgladd
-  }  
+    this.datas.map((e: countAddType) => {
+      if(e.id === this.idCart) {
+        e.count++
+        this.countAdd++
+      }
+    })
+  }
+  
+  removeClick(id: number) {
+    this.idCart = id
+    this.datas.map((e: countAddType) => {
+      if(e.id === this.idCart && this.countAdd > 0) {
+        e.count--
+        this.countAdd--
+      }
+    })
+  }
 }
 
 const store = new AppStoreProvider()

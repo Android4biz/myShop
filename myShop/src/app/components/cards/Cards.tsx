@@ -5,7 +5,7 @@ import Pagination from '../pagination/Pagination'
 import CardsItem from '../cards-item/CardsItem'
 import store from '../../../store/app/AppStoreProvider'
 import { shop, shopApi } from '../../api/shop'
-// import cartStore from '../../../store/app/CartStore'
+import CountCart from './CountCart'
 
 const Cards = observer((): JSX.Element => {
   const [ num, setNum ] = useState(1)
@@ -19,15 +19,7 @@ const Cards = observer((): JSX.Element => {
     store.clickItemCard(id)
     setNum(id)
   }
-
-  const handleClickBasket = (id: number): void => {
-    store.countAddIncrement(id)
-  }
-
-  const handleClickBasketDecrement = (id: number): void => {
-    store.countAddDecrement(id)
-  }
-
+  
   useEffect(() => {
     async function fetchData(): Promise<void> {
       const firstPageIndex: number = (store.page - 1) * store.totalPage
@@ -38,7 +30,7 @@ const Cards = observer((): JSX.Element => {
     }
     fetchData()
   }, [store.page])
-  
+
   return (
     <div className={style.main__cards}>
       <h1 className={style.title}>
@@ -46,23 +38,18 @@ const Cards = observer((): JSX.Element => {
       </h1>
       <section className={style.cards__section}>
         { store.flagItem ? store.datas.map((el: shopApi) =>
-          <div className={style.cards__block} >
+          <div className={style.cards__block} key={el.id}>
             <div className={style.cards__item} onClick={()=>handleClickItem(el.id)}>
               <img className={style.block__card} key={el.id} src={el.img}/>
               <h5 className={style.title__h5}>{el.category}</h5>
               <h3 className={style.title}>{el.title}</h3>
               <span>$ {el.price}</span>
             </div>
-            {store.tgladd && el.id === store.idCart ? <div className={style.count__block}>
-              <p>количество { el.count } шт. в корзину</p>
-              <button className={style.btn} onClick={() => handleClickBasket(el.id)}>+</button>
-              <button className={style.btn} onClick={() => handleClickBasketDecrement(el.id)}>-</button>
-              <button className={style.btn} style={{ width: 70 }} onClick={() => store.addRemove(el.id)}>Remove</button>
-            </div>
-            :
-            <div className={style.count__block}>
-              <button className={style.btn} onClick={()=> store.addRemove(el.id)}>Add</button>
-            </div>}
+              <CountCart
+                count={el.count}
+                id={el.id}
+                key={el.id}
+              />
           </div>
           ) : store.datas.map((i: shopApi) => num === i.id && <div>
             <CardsItem

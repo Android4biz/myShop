@@ -11,7 +11,7 @@ const Cart = observer((): JSX.Element => {
         store.datas.map((i: shopApi) => i.count ?
           <div className={style.cart}>
             <div className={style.block__remove}>
-              <button className={style.btn__remove} onClick={() => store.removeCartItem(i.id)}>X</button>
+              <button className={style.btn__remove} onClick={() => store.removeCartItem(i.id, store.countAdd)}>X</button>
             </div>
             <img src={i.img} width={50} height={50}/>
             <div className={style.cart__item__title}>Название: {i.title}</div>

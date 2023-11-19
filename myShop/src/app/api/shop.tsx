@@ -4,13 +4,13 @@ export interface shopApi {
   title: string,
   price: number,
   category: string,
-  count: number
+  count: number,
 }
 
 export const shop: shopApi[] = [
-  { id: 1, img: '/image/chair.png', category: 'Table', title: 'White Aesthetic Chair', price: 56, count: 0 },
-  { id: 2, img: '/image/cupboard.png', category: 'Cupboard', title: 'Wooden Cupboard 3 Row', price: 67, count: 0 },
-  { id: 3, img: '/image/chair.png', category: 'Chair', title: 'Minimalist Lounge Chair', price: 24, count: 0 },
+  { id: 1, img: '/image/chair.png', category: 'Table', title: 'White Aesthetic Chair', price: 56, count: 0},
+  { id: 2, img: '/image/cupboard.png', category: 'Cupboard', title: 'Wooden Cupboard 3 Row', price: 67, count: 0},
+  { id: 3, img: '/image/chair.png', category: 'Chair', title: 'Minimalist Lounge Chair', price: 24, count: 0},
   { id: 4, img: '/image/decor1.png', category: 'Decoration', title: 'Working Desk Setup', price: 89, count: 0 },
   { id: 5, img: '/image/decor2.png', category: 'Decoration', title: 'Minimalist White Cuppboard', price: 67, count: 0 },
   { id: 6, img: '/image/decor3.png', category: 'Decoration', title: 'Wooden Dining Table', price: 87, count: 0 },
