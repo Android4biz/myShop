@@ -24,7 +24,7 @@ function CountCart({ id, count }: countCart) {
           <p>количество { count } шт. в корзине</p>
           <button className={style.btn} onClick={() => handleClickBasket(id)}>+</button>
           <button className={style.btn} onClick={() => handleClickBasketDecrement(id)}>-</button>
-          <button className={style.btn} style={{ width: 70 }} onClick={() => store.removeClick(id)}>Remove</button>
+          {/* <button className={style.btn} style={{ width: 70 }} onClick={() => store.removeClick(id)}>Remove</button> */}
         </div>
         : <CardsButton id={id} count={count}/>
       }

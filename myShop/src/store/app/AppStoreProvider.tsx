@@ -22,8 +22,6 @@ class AppStoreProvider {
   idCart: number = 0
   countAdd: number = 0
 
-  // cnt: number = 0
-
   constructor() {
     makeAutoObservable(this)
     // localStorage.setItem('datas', JSON.stringify(this.datas))
@@ -122,11 +120,9 @@ class AppStoreProvider {
   removeCartItem(id: number, count: number) {
     this.idCart = id
     this.datas = this.datas.filter((e: countAddType) => e.id !== this.idCart)
-    this.datas.map((e: any) => {
-      if(e.id === this.idCart) {
-        e.count - count
-      }
-    })
+    if(this.datas) {
+      this.countAdd = this.countAdd - count
+    }
   }
 
   addClick(id: number) {
@@ -135,16 +131,6 @@ class AppStoreProvider {
       if(e.id === this.idCart) {
         e.count++
         this.countAdd++
-      }
-    })
-  }
-  
-  removeClick(id: number) {
-    this.idCart = id
-    this.datas.map((e: countAddType) => {
-      if(e.id === this.idCart && this.countAdd > 0) {
-        e.count--
-        this.countAdd--
       }
     })
   }
