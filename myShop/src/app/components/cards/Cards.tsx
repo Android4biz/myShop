@@ -1,11 +1,11 @@
-import { observer } from 'mobx-react-lite'
-import { useEffect, useState } from 'react'
-import style from './Cards.module.scss'
-import Pagination from '../pagination/Pagination'
-import CardsItem from '../cards-item/CardsItem'
+import {observer} from 'mobx-react-lite'
+import {useEffect,useState} from 'react'
 import store from '../../../store/app/AppStoreProvider'
-import { shop, shopApi } from '../../api/shop'
-import CountCart from './CountCart'
+import {shop,shopApi} from '../../api/shop'
+import CardsItem from '../cards-item/CardsItem'
+import CountCart from '../countcart/CountCart'
+import Pagination from '../pagination/Pagination'
+import style from './Cards.module.scss'
 
 const Cards = observer((): JSX.Element => {
   const [ num, setNum ] = useState(1)
@@ -30,7 +30,7 @@ const Cards = observer((): JSX.Element => {
     }
     fetchData()
   }, [store.page])
-
+  // console.log(store.datas, 'datas <<<')
   return (
     <div className={style.main__cards}>
       <h1 className={style.title}>

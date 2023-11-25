@@ -26,12 +26,12 @@ const Navbar = observer((): JSX.Element => {
               className={({isActive}) => isActive ? style.active : style.navlink}
           >Categories</NavLink>
           </li>
-          <li className={style.item__navbar}>
+          {/* <li className={style.item__navbar}>
             <NavLink
               to='/about'
               className={({isActive}) => isActive ? style.active : style.navlink}
           >About Us</NavLink>
-          </li>
+          </li> */}
         </ul>
         <Routes>
           <Route path='/*' element={<Basket/>}/>

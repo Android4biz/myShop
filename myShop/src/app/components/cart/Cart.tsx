@@ -1,14 +1,22 @@
+import { useEffect, useState } from 'react'
 import { observer } from "mobx-react-lite"
 import style from './Cart.module.scss'
 import { shopApi } from "../../api/shop"
 import store from "../../../store/app/AppStoreProvider"
 
 const Cart = observer((): JSX.Element => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    let data2: any = localStorage.getItem("datasAdd")
+    setData(JSON.parse(data2))
+  }, [])
 
   return (
     <div className={style.cart__list}>
       {
-        store.datas.map((i: shopApi) => i.count ?
+        data.map((i: shopApi) => i.count ?
+        // store.datas.map((i: shopApi) => i.count ?
           <div className={style.cart}>
             <div className={style.block__remove}>
               <button className={style.btn__remove} onClick={() => store.removeCartItem(i.id, i.count)}>X</button>

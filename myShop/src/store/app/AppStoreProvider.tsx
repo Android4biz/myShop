@@ -1,6 +1,5 @@
-import { makeAutoObservable } from 'mobx'
+import { makeAutoObservable } from 'mobx';
 import {shop, shopApi} from '../../app/api/shop';
-
 interface countAddType  {
   id: number;
   count: number;
@@ -24,14 +23,13 @@ class AppStoreProvider {
 
   constructor() {
     makeAutoObservable(this)
-    // localStorage.setItem('datas', JSON.stringify(this.datas))
-    // localStorage.getItem('datas')
+    localStorage.setItem('datas', JSON.stringify(this.datas))
   }
-
+  
   toggleFn() {
     this.toggleCategory = !this.toggleCategory
   }
-
+  
   todos(shop: shopApi[]) {
     this.datas = shop
     // localStorage.setItem('datas', JSON.stringify(this.datas))
@@ -88,33 +86,30 @@ class AppStoreProvider {
   paginationTgl(pageNum: number) {
     this.pageNum = pageNum
     this.tglpage = true
-    // localStorage.setItem('pageNum', JSON.stringify(this.pageNum))
   }
 
   countAddIncrement(id: number) {
     this.idCart = id
     this.datas.map((e: countAddType) => e.id === this.idCart ? e.count++ : '')
     this.countAdd++
-    // localStorage.setItem('basket', JSON.stringify(this.basketCount))
-    // this.count = this.datas.map((e: countAddType) => e.count)
-    // localStorage.setItem('number', JSON.stringify(this.count))
   }
 
   countAddDecrement(id: number) {
     this.idCart = id
     this.datas.map((e: countAddType) => e.id === this.idCart && e.count > 0 ? e.count-- : '')
     this.countAdd--
-    // localStorage.setItem('basket', JSON.stringify(this.basketCount))
   }
 
   countBtnMax(id: number) {
     this.idCart = id
     this.datas.map((e: countAddType) => e.id === this.idCart ? e.count++ : '')
+    // localStorage.setItem('countmax', JSON.stringify(this.datas))
   }
 
   countBtnMin(id: number) {
     this.idCart = id
     this.datas.map((e: countAddType) => e.id === this.idCart ? e.count-- : '')
+    // localStorage.setItem('countmin', JSON.stringify(this.datas))
   }
 
   removeCartItem(id: number, count: number) {
@@ -132,8 +127,10 @@ class AppStoreProvider {
         e.count++
         this.countAdd++
       }
+      localStorage.setItem('datasAdd', JSON.stringify(this.datas))
     })
   }
+   
 }
 
 const store = new AppStoreProvider()

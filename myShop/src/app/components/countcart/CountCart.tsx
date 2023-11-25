@@ -1,6 +1,6 @@
-import style from './Cards.module.scss'
 import store from '../../../store/app/AppStoreProvider'
-import CardsButton from './CardsButton'
+import CardsButton from '../cardsbutton/CardsButton'
+import style from '../../components/cards/Cards.module.scss'
 
 interface countCart {
   id: number,
@@ -24,7 +24,6 @@ function CountCart({ id, count }: countCart) {
           <p>количество { count } шт. в корзине</p>
           <button className={style.btn} onClick={() => handleClickBasket(id)}>+</button>
           <button className={style.btn} onClick={() => handleClickBasketDecrement(id)}>-</button>
-          {/* <button className={style.btn} style={{ width: 70 }} onClick={() => store.removeClick(id)}>Remove</button> */}
         </div>
         : <CardsButton id={id} count={count}/>
       }
