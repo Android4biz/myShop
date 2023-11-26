@@ -12,6 +12,12 @@ const Cart = observer((): JSX.Element => {
     setData(JSON.parse(data2))
   }, [])
 
+//   useEffect(() => {
+//     if (localStorage.getItem("datasAdd")) {
+//       store.datas = JSON.parse(localStorage.getItem("datasAdd"));
+//     }
+// }, [store.datas])
+
   return (
     <div className={style.cart__list}>
       {

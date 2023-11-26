@@ -23,7 +23,7 @@ class AppStoreProvider {
 
   constructor() {
     makeAutoObservable(this)
-    localStorage.setItem('datas', JSON.stringify(this.datas))
+    // localStorage.setItem('datasAdd', JSON.stringify(this.datas))
   }
   
   toggleFn() {
@@ -32,7 +32,7 @@ class AppStoreProvider {
   
   todos(shop: shopApi[]) {
     this.datas = shop
-    // localStorage.setItem('datas', JSON.stringify(this.datas))
+    localStorage.setItem('datasAdd', JSON.stringify(this.datas))
   }
 
   fullTodos(massiv: any) {
@@ -92,24 +92,36 @@ class AppStoreProvider {
     this.idCart = id
     this.datas.map((e: countAddType) => e.id === this.idCart ? e.count++ : '')
     this.countAdd++
+    // localStorage.setItem('count', JSON.stringify(this.countAdd))
   }
 
   countAddDecrement(id: number) {
     this.idCart = id
     this.datas.map((e: countAddType) => e.id === this.idCart && e.count > 0 ? e.count-- : '')
     this.countAdd--
+    // localStorage.setItem('count', JSON.stringify(this.countAdd))
   }
 
   countBtnMax(id: number) {
     this.idCart = id
-    this.datas.map((e: countAddType) => e.id === this.idCart ? e.count++ : '')
-    // localStorage.setItem('countmax', JSON.stringify(this.datas))
+    this.datas.map((e: countAddType) => {
+      if(e.id === this.idCart) {
+        e.count++
+      }
+    })
+    // localStorage.setItem('count', JSON.stringify(this.countAdd))
+    // this.datas.map((e: countAddType) => e.id === this.idCart ? e.count++ : '')
   }
 
   countBtnMin(id: number) {
     this.idCart = id
-    this.datas.map((e: countAddType) => e.id === this.idCart ? e.count-- : '')
-    // localStorage.setItem('countmin', JSON.stringify(this.datas))
+    this.datas.map((e: countAddType) => {
+      if(e.id === this.idCart) {
+        e.count--
+      }
+    })
+    // localStorage.setItem('count', JSON.stringify(this.countAdd))
+    // this.datas.map((e: countAddType) => e.id === this.idCart ? e.count-- : '')
   }
 
   removeCartItem(id: number, count: number) {
@@ -118,6 +130,8 @@ class AppStoreProvider {
     if(this.datas) {
       this.countAdd = this.countAdd - count
     }
+    localStorage.setItem('datasAdd', JSON.stringify(this.datas))
+    localStorage.setItem('count', JSON.stringify(this.countAdd))
   }
 
   addClick(id: number) {
@@ -128,6 +142,7 @@ class AppStoreProvider {
         this.countAdd++
       }
       localStorage.setItem('datasAdd', JSON.stringify(this.datas))
+      localStorage.setItem('count', JSON.stringify(this.countAdd))
     })
   }
    
